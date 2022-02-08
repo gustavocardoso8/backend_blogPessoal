@@ -16,7 +16,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "tb_postagens")
+@Table(name = "tb_postagem")
 public class Postagem {
 	
 	
@@ -29,11 +29,19 @@ public class Postagem {
 	private String titulo;
 	
 	@NotBlank(message = "O atributo texto é obrigatório!")
-	@Size(min = 5, max = 100, message = "O atributo texto deve conter no mínimo 5 e no máximo 100 caracteres")
+	@Size(min = 5, message = "O atributo texto deve conter no mínimo 5 caracteres")
 	private String texto;
 	
 	@UpdateTimestamp
 	private LocalDateTime data;
+	
+	@ManyToOne
+	@JsonIgnoreProperties("postagem")
+	private Tema tema;
+	
+	@ManyToOne
+	@JsonIgnoreProperties("postagem")
+	private Usuario usuario;
 	
 
 	public Long getId() {
@@ -67,10 +75,6 @@ public class Postagem {
 	public void setData(LocalDateTime data) {
 		this.data = data;
 	}
-	
-	@ManyToOne
-	@JsonIgnoreProperties("postagem")
-	private Tema tema;
 
 	public Tema getTema() {
 		return tema;

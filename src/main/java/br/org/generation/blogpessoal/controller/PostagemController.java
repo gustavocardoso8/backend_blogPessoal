@@ -21,7 +21,7 @@ import br.org.generation.blogpessoal.model.Postagem;
 import br.org.generation.blogpessoal.repository.PostagemRepository;
 
 @RestController
-@RequestMapping("/postagens")
+@RequestMapping("/postagem")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class PostagemController {
 	
